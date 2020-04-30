@@ -70,7 +70,7 @@ public class AugmentedFacesActivity extends AppCompatActivity {
     // Load the face regions renderable.
     // This is a skinned model that renders 3D objects mapped to the regions of the augmented face.
     ModelRenderable.builder()
-        .setSource(this, R.raw.fox_face)
+        .setSource(this, R.raw.glasses)
         .build()
         .thenAccept(
             modelRenderable -> {
@@ -80,10 +80,10 @@ public class AugmentedFacesActivity extends AppCompatActivity {
             });
 
     // Load the face mesh texture.
-    Texture.builder()
-        .setSource(this, R.drawable.fox_face_mesh_texture)
-        .build()
-        .thenAccept(texture -> faceMeshTexture = texture);
+//    Texture.builder()
+//        .setSource(this, R.drawable.fox_face_mesh_texture)
+//        .build()
+//        .thenAccept(texture -> faceMeshTexture = texture);
 
     ArSceneView sceneView = arFragment.getArSceneView();
 
@@ -95,7 +95,8 @@ public class AugmentedFacesActivity extends AppCompatActivity {
 
     scene.addOnUpdateListener(
         (FrameTime frameTime) -> {
-          if (faceRegionsRenderable == null || faceMeshTexture == null) {
+//          if (faceRegionsRenderable == null || faceMeshTexture == null) {
+          if (faceRegionsRenderable == null) {
             return;
           }
 
@@ -108,7 +109,7 @@ public class AugmentedFacesActivity extends AppCompatActivity {
               AugmentedFaceNode faceNode = new AugmentedFaceNode(face);
               faceNode.setParent(scene);
               faceNode.setFaceRegionsRenderable(faceRegionsRenderable);
-              faceNode.setFaceMeshTexture(faceMeshTexture);
+//              faceNode.setFaceMeshTexture(faceMeshTexture);
               faceNodeMap.put(face, faceNode);
             }
           }
